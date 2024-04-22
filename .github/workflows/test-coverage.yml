@@ -16,6 +16,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         java-version: [11]
+        node-version: [20] 
 
     steps:
       - uses: actions/checkout@v4
@@ -32,14 +33,14 @@ jobs:
         working-directory: back
         run: mvn test -B
 
-      - name: Upload JaCoCo coverage report
+      - name: Upload backend(JaCoCo) coverage report
         uses: actions/upload-artifact@v4
         with:
           name: back-coverage-report
           path: back/target/site/jacoco/
 
       # Frontend
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
@@ -52,7 +53,7 @@ jobs:
         working-directory: front
         run: npm test -- --code-coverage --browsers=ChromeHeadless --watch=false
 
-      - name: Archive code coverage results
+      - name: Upload frontend coverage results
         uses: actions/upload-artifact@v4
         with:
           name: front-coverage-report
