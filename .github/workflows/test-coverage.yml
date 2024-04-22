@@ -1,0 +1,72 @@
+name: Run tests and generate reports
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-and-coverage:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        java-version: [11]
+
+    steps:
+      - uses: actions/checkout@v3
+
+        # Backend
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v3
+        with:
+          java-versions: ${{ matrix.java-version }}
+          cache: maven
+
+      - name: Build and test backend
+        working-directory: back
+        run: mvn test -B
+
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          jacoco-csv-file: back/target/site/jacoco/jacoco.csv
+          generate-branches-badge: true
+
+      - name: Upload JaCoCo coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report
+          path: back/target/site/jacoco/
+
+      # Frontend
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        working-directory: front
+        run: npm ci
+
+      - name: Run unit tests
+        working-directory: front
+        run: npm test -- --watch=false
+
+      - name: Run coverage tests
+        working-directory: front
+        run: npm test -- --code-coverage --watch=false
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: front/coverage/bobapp/
+
+      - name: Display coverage results
+        run: |
+          echo "Backend Coverage Report: https://github.com/${{ github.repository }}/actions/artifacts/${{ github.sha }}/jacoco-report"
+          echo "Frontend Coverage Report: https://github.com/${{ github.repository }}/actions/artifacts/${{ github.sha }}/coverage-report"
