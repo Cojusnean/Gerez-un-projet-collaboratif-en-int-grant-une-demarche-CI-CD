@@ -1,4 +1,5 @@
 name: Run tests and generate reports
+run-name: Run tests and generate coverage reports
 
 on:
   push:
