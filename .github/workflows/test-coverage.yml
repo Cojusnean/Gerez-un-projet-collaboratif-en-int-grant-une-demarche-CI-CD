@@ -67,8 +67,3 @@ jobs:
         with:
           name: code-coverage-report
           path: front/coverage/bobapp/
-
-      - name: Display coverage results
-        run: |
-          echo "Backend Coverage Report: https://github.com/${{ github.repository }}/actions/artifacts/${{ github.sha }}/jacoco-report"
-          echo "Frontend Coverage Report: https://github.com/${{ github.repository }}/actions/artifacts/${{ github.sha }}/coverage-report"
