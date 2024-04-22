@@ -18,11 +18,11 @@ jobs:
         java-version: [11]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
         # Backend
       - name: Set up JDK ${{ matrix.java-version }}
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
@@ -33,20 +33,20 @@ jobs:
         run: mvn test -B
 
       - name: Generate JaCoCo Badge
-        uses: cicirello/jacoco-badge-generator@v2
+        uses: cicirello/jacoco-badge-generator@v4
         with:
           jacoco-csv-file: back/target/site/jacoco/jacoco.csv
           generate-branches-badge: true
 
       - name: Upload JaCoCo coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
           path: back/target/site/jacoco/
 
       # Frontend
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -63,7 +63,7 @@ jobs:
         run: npm test -- --code-coverage --browsers=ChromeHeadless --watch=false
 
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
           path: front/coverage/bobapp/
