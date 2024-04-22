@@ -54,11 +54,7 @@ jobs:
         working-directory: front
         run: npm ci
 
-      - name: Run unit tests
-        working-directory: front
-        run: npm test -- --browsers=ChromeHeadless  --watch=false
-
-      - name: Run coverage tests
+      - name: Run test with coverage
         working-directory: front
         run: npm test -- --code-coverage --browsers=ChromeHeadless --watch=false
 
