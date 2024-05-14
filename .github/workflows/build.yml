@@ -7,7 +7,7 @@ on:
 
 jobs:
   analyze-back:
-    name: Build and analyze back
+    name: Analyze back
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -41,7 +41,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Cojusnean_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD_8faa991f-61ff-452e-b380-cd9870ccdbd4 -Dsonar.projectName='Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD'
 
   analyze-front:
-    name: Build and analyze front
+    name: Analyze front
     runs-on: ubuntu-latest
     defaults:
       run:
