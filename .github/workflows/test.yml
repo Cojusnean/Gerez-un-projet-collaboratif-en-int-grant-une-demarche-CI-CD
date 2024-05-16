@@ -13,6 +13,9 @@ jobs:
   sonarqube:
     name: SonarQube Analysis
     runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: back
     
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +39,6 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Run SonarQube Analysis
-        working-directory: back
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
