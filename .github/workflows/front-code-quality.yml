@@ -30,9 +30,8 @@ jobs:
         working-directory: front
         run: npm install
         
-      - name: Build and execute tests
-        run:
-          ng test --code-coverage --watch=false --browsers ChromeHeadless
+      - name: Execute tests
+        run: npm run test -- --no-watch --code-coverage
         
       - name: Build and analyze
         env:
