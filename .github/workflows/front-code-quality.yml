@@ -26,16 +26,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           
-      - name: Install dependencies
-        working-directory: front
+      - name: Run npm install
         run: npm install
-        
-      - name: Execute tests
-        run: npm run test -- --no-watch --code-coverage
-        
-      - name: Build and analyze
+      
+      - name: Run npm test
+        run: npm run test:prod
+      
+      - name: Build and analyse
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: front
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: sonar-scanner 
-        
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
