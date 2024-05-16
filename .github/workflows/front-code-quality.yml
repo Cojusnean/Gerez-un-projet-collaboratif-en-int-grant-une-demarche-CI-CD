@@ -31,9 +31,8 @@ jobs:
         run: npm install
         
       - name: Build and execute tests
-        run: |
-          npm run build --if-present
-          npm run test -- --no-watch --code-coverage
+        run:
+          ng test --code-coverage --watch=false --browsers ChromeHeadless
         
       - name: Build and analyze
         env:
