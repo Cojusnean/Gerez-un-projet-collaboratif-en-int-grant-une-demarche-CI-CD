@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        java-version: [17]
+        java-version: [11]
         node-version: [20] 
 
     steps:
