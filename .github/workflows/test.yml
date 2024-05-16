@@ -36,4 +36,5 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Cojusnean_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD_9e8799b7-acf5-423f-a467-52ad6e259c5c -Dsonar.projectName='Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD'
+        run: mvn clean verify sonar:sonar -Dsonar.projectKey=Cojusnean_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD_9e8799b7-acf5-423f-a467-52ad6e259c5c
+
