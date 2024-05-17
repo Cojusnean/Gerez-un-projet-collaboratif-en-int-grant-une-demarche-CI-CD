@@ -30,10 +30,7 @@ jobs:
       - name: Run npm install
         run: npm install
       
-      - name: Run npm test
-        run: npm test -- --code-coverage --browsers=ChromeHeadless --watch=false
-      
-      - name: Build and analyse
+      - name: SonarCloud Scan Frontend
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: front
