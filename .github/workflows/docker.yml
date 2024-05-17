@@ -24,19 +24,19 @@ jobs:
        name: Set up Docker Buildx
        uses: docker/setup-buildx-action@v3
       - 
-        name: Build and Push Docker Image of frontend
+        name: Build and Push Docker Image (Front)
         uses: docker/build-push-action@v3
         with:
           context: ./front
           file:  ./front/Dockerfile
           push: true
-          tags: tecktv/bobapp-front:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-front:latest
       - 
-        name: Build and Push Docker Image of backend
+        name: Build and Push Docker Image (Back)
         uses: docker/build-push-action@v3
         with:
           context: ./back
           file:  ./back/Dockerfile
           push: true
-          tags: tecktv/bobapp-back:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bobapp-back:latest
           
