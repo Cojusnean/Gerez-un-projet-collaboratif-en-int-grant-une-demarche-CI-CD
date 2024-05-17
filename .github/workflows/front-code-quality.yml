@@ -70,11 +70,6 @@ jobs:
       - name: Install frontend dependencies
         run: npm install
 
-      - name: Build frontend
-        run: npm run build
-
       - name: SonarCloud Scan Frontend
         run: |
-          npx sonar-scanner \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
