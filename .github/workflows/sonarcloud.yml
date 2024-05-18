@@ -63,3 +63,4 @@ jobs:
           args: >
             -Dsonar.projectKey=Cojusnean_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
             -Dsonar.organization=cojusnean
+            -Dsonar.java.binaries=back/target/classes
