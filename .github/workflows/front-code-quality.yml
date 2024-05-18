@@ -7,8 +7,8 @@ on:
     types: [opened, synchronize, reopened]
     
 jobs:
-  build:
-    name: Sonarcloud front-end analysis
+  analyze-frontend:
+    name: Build and analyze
     runs-on: ubuntu-latest
     strategy:
       matrix:
