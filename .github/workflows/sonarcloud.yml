@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
     
 jobs:
-  SonarCloud-analyze:
+  scan-all-packages:
     name: Java build and analyze
     runs-on: ubuntu-latest
     steps:
@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: "17"
-          distribution: "adopt"
+          distribution: "zulu"
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
