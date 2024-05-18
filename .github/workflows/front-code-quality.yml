@@ -13,9 +13,6 @@ jobs:
     strategy:
       matrix:
         node-version: [20]
-    defaults:
-      run:
-        working-directory: front
     
     steps:
       - uses: actions/checkout@v4
