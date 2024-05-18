@@ -49,7 +49,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: -Dproject.settings=back/sonar-project.properties
-
+          projectBaseDir: ./back
       # - name: Build and analyze
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
