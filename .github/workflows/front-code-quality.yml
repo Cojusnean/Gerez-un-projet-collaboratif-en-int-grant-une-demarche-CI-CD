@@ -37,3 +37,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: -Dproject.settings=front/sonar-project.properties
+          projectBaseDir: ./front
