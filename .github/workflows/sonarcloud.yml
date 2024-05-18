@@ -60,3 +60,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: .
+          projectKey: Cojusnean_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
+          organization: cojusnean
